@@ -1,0 +1,79 @@
+.border-box, a, article, aside, blockquote, body, code, dd, div, dl, dt, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, input[type=email], input[type=number], input[type=password], input[type=tel], input[type=text], input[type=url], legend, li, main, nav, ol, p, pre, section, table, td, textarea, th, tr, ul {
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: 0;
+}
+
+html {
+  line-height: 1.15;
+}
+
+body {
+  margin: 0;
+}
+body > .main > .row > div {
+  height: 105px;
+}
+
+.shadow {
+  box-shadow: 0 0 35px 0 rgba(73,80,87,.15);
+}
+
+.number {
+  font-weight: bold;
+}
+
+.heading {
+  font-weight: normal;
+  color: grey;
+}
+
+.rounded {
+  border-radius: .75rem!important;
+}
+
+.hidden {
+  display: none;
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  line-height: .75;
+}
+
+select, input {
+  background: white;
+  padding: 5px;
+  border: none;
+  text-align-last:center;
+  box-shadow: 0px 0px 5px rgba(73,80,87,.25)
+}
+
+small {
+  font-size: 60% !important;
+  color: red;
+}
+
+.maw-90-p {
+  max-width: 90%;
+}
+
+.w-200{
+  width: 200px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  padding: 20px;
+  width: 100%;
+  background-color: #f5f5f5;
+  box-shadow: -5px 0px 25px rgba(0,0,0,0.15);
+}
+
+.footer-spacing {
+  padding-bottom: calc(100px + 1.5rem) !important;
+}

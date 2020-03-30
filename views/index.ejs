@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COVID19 Details </title>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" type="image/png" href="img/favicon.ico">
+  <script src="https://momentjs.com/downloads/moment.js" type="application/javascript"></script>
+</head>
+<body>
+  <div class="main px-3 py-4 h-100 maw-90-p m-auto footer-spacing">
+    <div class="row">
+      <div class="col-12 col-md-6 mb-4 order-1">
+        <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow d-flex flex-row h-100">
+          <span class="icon d-inline-block align-self-center">
+            <img width="48" height="48" src="https://img.icons8.com/color/96/000000/map-pin.png"/>
+          </span>
+          <div class="d-inline-block text-center w-100">
+            <h5 class="mb-3">Country</h5>
+            <select class="w-200" id="countrySelect" name="country">
+              <option value="global">Global</option>
+              <% for (var country of countries) { %>
+                <option value="<%= encodeURIComponent(country.country.toLowerCase()) %>"><%= country.country %></option>
+              <% } %>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 mb-4 order-2 order-md-3">
+        <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow d-flex flex-row">
+          <span class="icon d-inline-block align-self-center">
+            <img width="48" height="48" src="https://img.icons8.com/color/96/000000/doctors-bag.png"/>
+          </span>
+          <div class="d-inline-block text-center w-100">
+            <h5 class="heading">Total Cases</h5>
+            <h3 class="number"><%= String(data.cases).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <span><small><%= data.todayCases ? "(+"+String(data.todayCases).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></span></h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 mb-4 order-3 order-md-4">
+        <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow d-flex flex-row">
+          <span class="icon d-inline-block align-self-center">
+            <img width="48" height="48" src="https://img.icons8.com/color/96/000000/cemetery.png"/>
+          </span>
+          <div class="d-inline-block text-center w-100">
+            <h5 class="heading">Total Deaths</h5>
+            <h3 class="number"><%= String(data.deaths).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <small><%= data.todayDeaths ? "(+"+String(data.todayDeaths).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></h3>  
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 mb-4 order-4 order-md-5">
+        <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow d-flex flex-row">
+          <span class="icon d-inline-block align-self-center">
+            <img width="48" height="48" src="https://img.icons8.com/color/96/000000/coronavirus.png"/>
+          </span>
+          <div class="d-inline-block text-center w-100">
+            <h5 class="heading">Total Active</h5>
+            <h3 class="number"><%= String(data.active).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <small><%= data.todayActive ? "(+"+String(data.todayActive).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 mb-4 order-4 order-md-5">
+        <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow d-flex flex-row">
+          <span class="icon d-inline-block align-self-center">
+            <img width="48" height="48" src="https://img.icons8.com/color/96/000000/recovery.png"/>
+          </span>
+          <div class="d-inline-block text-center w-100">
+            <h5 class="text-center heading">Total Healed</h5>
+            <h3 class="text-center number"><%= String(data.recovered).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <small><%= data.todayRecovered ? "(+"+String(data.todayRecovered).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></h3>
+          </div>
+        </div>
+      </div>
+      <% if(data.critical) { %>
+        <div class="col-12 col-md-6 mb-4 order-4 order-md-5">
+          <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow d-flex flex-row">
+            <span class="icon d-inline-block align-self-center">
+              <img width="48" height="48" src="https://img.icons8.com/color/96/000000/hospital-bed.png"/>
+            </span>
+            <div class="d-inline-block text-center w-100">
+              <h5 class="text-center heading">Critical Cases</h5>
+              <h3 class="text-center number"><%= String(data.critical).replace(/(.)(?=(\d{3})+$)/g,'$1,') %></h3>
+            </div>
+          </div>
+        </div>
+      <% } %>
+      <% if(data.casesPerOneMillion) { %>
+        <div class="col-12 col-md-6 mb-4 order-4 order-md-5">
+          <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow d-flex flex-row">
+            <span class="icon d-inline-block align-self-center">
+              <img width="48" height="48" src="https://img.icons8.com/color/96/000000/group.png"/>
+            </span>
+            <div class="d-inline-block text-center w-100">
+              <h5 class="text-center heading">Cases Per Million</h5>
+              <h3 class="text-center number"><%= String(data.casesPerOneMillion).replace(/(.)(?=(\d{3})+$)/g,'$1,') %></h3>
+            </div>
+          </div>
+        </div>
+      <% } %>
+      <div class="col-12 col-md-6 mb-md-4 order-6 order-md-2">
+        <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow h-100 d-flex flex-row">
+          <span class="icon d-inline-block align-self-center">
+            <img width="48" height="48" src="https://img.icons8.com/color/96/000000/historical.png"/>
+          </span>
+          <div class="d-inline-block text-center w-100">
+            <h5 class="heading">Last Updated</h5>
+            <h3 class="number" id="lastUpdated"></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="row">
+      <div class="col-12 text-center">
+        <p class="m-0">
+          All data is taken from <a style="font-size: 15px;" href="https://github.com/novelCOVID/API" target="_blank">novelCOVID</a><br>
+          Made with <img style="margin-top: -2px;" width="20" height="20" src="https://img.icons8.com/material-sharp/96/000000/like.png"/> by <a style="font-size: 15px;" href="https://www.github.com/puf17640" target="_blank">Julian Pufler</a> in Vienna
+        </p>
+      </div>
+    </div> 
+  </div>
+  <script>
+    var updated = <%- data.updated %>
+    $("#lastUpdated").text(moment(updated).fromNow())
+    $("#countrySelect").val(window.location.pathname.replace(/\//g, '')).on('change', (e)=>{
+      window.location.replace($(e.target).val())
+    })
+  </script>
+</body>
+</html>
