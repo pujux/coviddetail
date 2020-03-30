@@ -77,3 +77,9 @@ small {
 .footer-spacing {
   padding-bottom: calc(100px + 1.5rem) !important;
 }
+
+@media (min-width:992px) {
+  .maw-90-p {
+    max-width: 80%;
+  }
+}
