@@ -13,7 +13,7 @@ html {
 body {
   margin: 0;
 }
-body > .main > .row > div {
+body > .main > .row:first-of-type > div {
   height: 105px;
 }
 
