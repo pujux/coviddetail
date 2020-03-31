@@ -122,7 +122,7 @@
             <img width="56" height="56" src="https://img.icons8.com/color/96/000000/recovery.png"/>
           </span>
           <div class="d-inline-block text-center w-100">
-            <h5 class="text-center heading">Total Healed</h5>
+            <h5 class="text-center heading">Total Recovered</h5>
             <h3 class="text-center number"><%= String(data.recovered).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <small><%= data.todayRecovered ? "(+"+String(data.todayRecovered).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></h3>
           </div>
         </div>
@@ -194,7 +194,7 @@
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['Active', 'Healed', 'Deaths'],
+            labels: ['Active', 'Recovered', 'Deaths'],
             datasets: [{
                 data: [<%= data.active %>, <%= data.recovered %>, <%= data.deaths %>, ],
                 backgroundColor: [
