@@ -137,17 +137,15 @@
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['Cases', 'Active', 'Healed', 'Deaths'],
+            labels: ['Active', 'Healed', 'Deaths'],
             datasets: [{
-                data: [<%= data.cases %>, <%= data.active %>, <%= data.recovered %>, <%= data.deaths %>, ],
+                data: [<%= data.active %>, <%= data.recovered %>, <%= data.deaths %>, ],
                 backgroundColor: [
-                  'rgba(54, 162, 235, 1)',
                   'rgba(255, 206, 86, 1)',
                   'rgba(75, 192, 192, 1)',
                   'rgba(255, 99, 132, 1)',
                 ],
                 hoverBackgroundColor: [
-                  'rgba(54, 162, 235, .75)',
                   'rgba(255, 206, 86, .75)',
                   'rgba(75, 192, 192, .75)',
                   'rgba(255, 99, 132, .75)',
