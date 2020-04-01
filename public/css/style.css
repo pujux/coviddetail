@@ -85,6 +85,10 @@ canvas {
   margin: 0 auto;
 }
 
+small {
+  font-size: 50% !important;
+}
+
 @media (min-width:992px) {
   .maw-90-p {
     max-width: 80%;
