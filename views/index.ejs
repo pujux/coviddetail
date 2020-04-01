@@ -105,7 +105,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6 mb-4 order-4 order-md-5">
+      <div class="col-12 col-md-6 <% if (data.critical || data.casesPerOneMillion) { %>mb-4 <% } %>order-4 order-md-5">
         <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow d-flex flex-row">
           <span class="icon d-inline-block align-self-center">
             <img width="56" height="56" src="https://img.icons8.com/color/96/000000/coronavirus.png"/>
@@ -116,7 +116,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6 mb-4 order-4 order-md-5">
+      <div class="col-12 col-md-6 <% if (data.critical || data.casesPerOneMillion) { %>mb-4 <% } %>order-4 order-md-5">
         <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow d-flex flex-row">
           <span class="icon d-inline-block align-self-center">
             <img width="56" height="56" src="https://img.icons8.com/color/96/000000/recovery.png"/>
