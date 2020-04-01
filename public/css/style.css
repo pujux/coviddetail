@@ -8,11 +8,13 @@
 
 html {
   line-height: 1.15;
+  transition: all 1s ease-in-out;
 }
 
 body {
   margin: 0;
 }
+
 body > .main > .row:first-of-type > div {
   height: 105px;
 }
@@ -92,5 +94,12 @@ small {
 @media (min-width:992px) {
   .maw-90-p {
     max-width: 80%;
+  }
+}
+
+@media (max-width:576px) {
+  img {
+    width: 48px;
+    height: 48px;
   }
 }

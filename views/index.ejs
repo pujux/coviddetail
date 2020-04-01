@@ -90,7 +90,7 @@
           </span>
           <div class="d-inline-block text-center w-100">
             <h5 class="heading">Total Cases</h5>
-            <h3 class="number"><%= String(data.cases).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><span><small><%= data.todayCases ? "(+"+String(data.todayCases).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></span></h3>
+            <h3 class="number"><%= String(data.cases).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <span><small><%= data.todayCases ? "(+"+String(data.todayCases).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></span></h3>
           </div>
         </div>
       </div>
@@ -101,7 +101,7 @@
           </span>
           <div class="d-inline-block text-center w-100">
             <h5 class="heading">Total Deaths</h5>
-            <h3 class="number"><%= String(data.deaths).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><small><%= data.todayDeaths ? "(+"+String(data.todayDeaths).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></h3>  
+            <h3 class="number"><%= String(data.deaths).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <small><%= data.todayDeaths ? "(+"+String(data.todayDeaths).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></h3>  
           </div>
         </div>
       </div>
@@ -112,7 +112,7 @@
           </span>
           <div class="d-inline-block text-center w-100">
             <h5 class="heading">Total Active</h5>
-            <h3 class="number"><%= String(data.active).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><small><%= data.todayActive ? "(+"+String(data.todayActive).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></h3>
+            <h3 class="number"><%= String(data.active).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <small><%= data.todayActive ? "(+"+String(data.todayActive).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></h3>
           </div>
         </div>
       </div>
@@ -123,7 +123,7 @@
           </span>
           <div class="d-inline-block text-center w-100">
             <h5 class="text-center heading">Total Recovered</h5>
-            <h3 class="text-center number"><%= String(data.recovered).replace(/(.)(?=(\d{3})+$)/g,'$1,') %><small><%= data.todayRecovered ? "(+"+String(data.todayRecovered).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></h3>
+            <h3 class="text-center number"><%= String(data.recovered).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <small><%= data.todayRecovered ? "(+"+String(data.todayRecovered).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></h3>
           </div>
         </div>
       </div>
