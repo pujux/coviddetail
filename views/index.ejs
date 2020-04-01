@@ -105,7 +105,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6 <% if (data.critical || data.casesPerOneMillion) { %>mb-4 <% } %>order-4 order-md-5">
+      <div class="col-12 col-md-6 mb-4 <% if (!data.critical || !data.casesPerOneMillion) { %>mb-md-0 <% } %>order-4 order-md-5">
         <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow d-flex flex-row">
           <span class="icon d-inline-block align-self-center">
             <img width="56" height="56" src="https://img.icons8.com/color/96/000000/coronavirus.png"/>
@@ -116,7 +116,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6 <% if (data.critical || data.casesPerOneMillion) { %>mb-4 <% } %>order-4 order-md-5">
+      <div class="col-12 col-md-6 mb-4 <% if (!data.critical || !data.casesPerOneMillion) { %>mb-md-0 <% } %>order-4 order-md-5">
         <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow d-flex flex-row">
           <span class="icon d-inline-block align-self-center">
             <img width="56" height="56" src="https://img.icons8.com/color/96/000000/recovery.png"/>
@@ -184,7 +184,7 @@
       </div>
       <div class="col-12 col-md-6 mt-2 mt-md-0 text-center d-flex flex-row justify-content-center">
         <p class="m-0 align-self-center">
-          <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/puf17640"><img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Donate"><span style="margin-left:15px;margin-right:5px;font-size:28px !important;">Donate</span></a>
+          <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/puf17640"><img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Donate"><span style="margin-left:15px;margin-right:5px;font-size:28px !important;">Buy me a coffee</span></a>
         </p>
       </div>
     </div> 
