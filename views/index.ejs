@@ -90,7 +90,7 @@
           </span>
           <div class="d-inline-block text-center w-100">
             <h5 class="heading">Total Cases</h5>
-            <h3 class="number"><%= String(data.cases).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <span><small><%= data.todayCases ? "(+"+String(data.todayCases).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></span></h3>
+            <h3 class="number"><%= String(data.cases).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <span><small><%= data.todayCases !== undefined ? "("+(data.todayCases >= 0 ? "+":"-")+String(Math.abs(data.todayCases)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></span></h3>
           </div>
         </div>
       </div>
@@ -101,7 +101,7 @@
           </span>
           <div class="d-inline-block text-center w-100">
             <h5 class="heading">Total Deaths</h5>
-            <h3 class="number"><%= String(data.deaths).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <small><%= data.todayDeaths ? "(+"+String(data.todayDeaths).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></h3>  
+            <h3 class="number"><%= String(data.deaths).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <span><small><%= data.todayDeaths !== undefined ? "("+(data.todayDeaths >= 0 ? "+":"-")+String(Math.abs(data.todayDeaths)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></span></h3>  
           </div>
         </div>
       </div>
@@ -112,7 +112,7 @@
           </span>
           <div class="d-inline-block text-center w-100">
             <h5 class="heading">Total Active</h5>
-            <h3 class="number"><%= String(data.active).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <small><%= data.todayActive ? "(+"+String(data.todayActive).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></h3>
+            <h3 class="number"><%= String(data.active).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <span><small><%= data.todayActive !== undefined ? "("+(data.todayActive >= 0 ? "+":"-")+String(Math.abs(data.todayActive)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></span></h3>
           </div>
         </div>
       </div>
@@ -123,7 +123,7 @@
           </span>
           <div class="d-inline-block text-center w-100">
             <h5 class="text-center heading">Total Recovered</h5>
-            <h3 class="text-center number"><%= String(data.recovered).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <small><%= data.todayRecovered ? "(+"+String(data.todayRecovered).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></h3>
+            <h3 class="text-center number"><%= String(data.recovered).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <span><small><%= data.todayRecovered !== undefined ? "("+(data.todayRecovered >= 0 ? "+":"-")+String(Math.abs(data.todayRecovered)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></span></h3>
           </div>
         </div>
       </div>
@@ -135,7 +135,7 @@
             </span>
             <div class="d-inline-block text-center w-100">
               <h5 class="text-center heading">Critical Cases</h5>
-              <h3 class="text-center number"><%= String(data.critical).replace(/(.)(?=(\d{3})+$)/g,'$1,') %></h3>
+              <h3 class="text-center number"><%= String(data.critical).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <span><small><%= data.todayCritical !== undefined ? "("+(data.todayCritical >= 0 ? "+":"-")+String(Math.abs(data.todayCritical)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></span></h3>
             </div>
           </div>
         </div>
@@ -148,7 +148,7 @@
             </span>
             <div class="d-inline-block text-center w-100">
               <h5 class="text-center heading">Cases Per Million</h5>
-              <h3 class="text-center number"><%= String(data.casesPerOneMillion).replace(/(.)(?=(\d{3})+$)/g,'$1,') %></h3>
+              <h3 class="text-center number"><%= String(data.casesPerOneMillion).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <span><small><%= data.todayCasesPerOneMillion !== undefined ? "("+(data.todayCasesPerOneMillion >= 0 ? "+":"-")+String(Math.abs(data.todayCasesPerOneMillion)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></span></h3>
             </div>
           </div>
         </div>
@@ -222,6 +222,13 @@
     $("#lastUpdated").text(moment(updated).fromNow(true))
     $("#countrySelect").val(window.location.pathname.replace(/\//g, '')).on('change', (e)=>{
       window.location.replace(decodeURIComponent($(e.target).val()))
+    })
+    $("small").each((i, e) => {
+      if(parseInt(e.textContent.replace(/(\(|\))/g, '')) > 0){
+        $(e).addClass('positive')
+      }else{
+        $(e).addClass('negative')
+      }
     })
   </script>
 </body>

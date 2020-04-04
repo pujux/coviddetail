@@ -53,7 +53,14 @@ select, input {
 
 small {
   font-size: 60% !important;
+}
+
+small.positive {
   color: red;
+}
+
+small.negative {
+  color: green;
 }
 
 .maw-90-p {
@@ -94,8 +101,13 @@ small {
 }
 
 @media (max-width:576px) {
+  .icon {
+    position: absolute;
+    top: 7.5px;
+  }
+
   span > img {
-    width: 48px;
-    height: 48px;
+    width: 36px;
+    height: 36px;
   }
 }
