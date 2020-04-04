@@ -55,6 +55,10 @@ small {
   font-size: 60% !important;
 }
 
+.main > .row:first-of-type > div {
+  height: 105px;
+}
+
 small.positive {
   color: red;
 }
