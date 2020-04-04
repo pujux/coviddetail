@@ -67,6 +67,10 @@ small.negative {
   color: green;
 }
 
+small.recovered {
+  filter: invert();
+}
+
 .maw-90-p {
   max-width: 90%;
 }

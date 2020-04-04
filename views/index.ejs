@@ -123,7 +123,7 @@
           </span>
           <div class="d-inline-block text-center w-100">
             <h5 class="text-center heading">Total Recovered</h5>
-            <h3 class="text-center number"><%= String(data.recovered).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <span><small><%= data.todayRecovered !== undefined ? "("+(data.todayRecovered >= 0 ? "+":"-")+String(Math.abs(data.todayRecovered)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></span></h3>
+            <h3 class="text-center number"><%= String(data.recovered).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <span><small class="recovered"><%= data.todayRecovered !== undefined ? "("+(data.todayRecovered >= 0 ? "+":"-")+String(Math.abs(data.todayRecovered)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></span></h3>
           </div>
         </div>
       </div>
