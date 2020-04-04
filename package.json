@@ -8,13 +8,13 @@
   "license": "ISC",
   "dependencies": {
     "cookie-parser": "1.4.5",
+    "covidapi": "0.0.1",
     "dotenv": "8.2.0",
     "ejs": "3.0.1",
     "express": "4.17.1",
     "express-session": "1.17.0",
     "helmet": "3.22.0",
     "morgan": "1.10.0",
-    "node-cron": "2.0.3",
-    "novelcovid": "1.0.7-b3"
+    "node-cron": "2.0.3"
   }
 }

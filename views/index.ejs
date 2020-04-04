@@ -77,7 +77,7 @@
             <select class="w-200" id="countrySelect" name="country">
               <option value="global">Global</option>
               <% for (var country of countries) { %>
-                <option value="<%= encodeURIComponent(country.country.toLowerCase()) %>"><%= country.country %></option>
+                <option value="<%= encodeURIComponent(country.country) %>"><%= country.country %></option>
               <% } %>
             </select>
           </div>
@@ -221,7 +221,7 @@
     let updated = <%- data.updated %>
     $("#lastUpdated").text(moment(updated).fromNow(true))
     $("#countrySelect").val(window.location.pathname.replace(/\//g, '')).on('change', (e)=>{
-      window.location.replace($(e.target).val())
+      window.location.replace(decodeURIComponent($(e.target).val()))
     })
   </script>
 </body>

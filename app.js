@@ -5,7 +5,8 @@ const express = require('express'),
   http = require('http'),
   https = require('https'),
   fs = require('fs'),
-  api = require('novelcovid')
+  api = require('covidapi')
+
 
 if(dotenvconf.error || !process.env.NODE_ENV || !process.env.HTTP_PORT){
   console.log('invalid environment variables, please fix your .env file')
@@ -37,11 +38,42 @@ if(isProduction)
 
 app.get('/', (req, res, next) => res.redirect('/global'))
 
+app.get('/overview/', (req, res, next) => res.redirect('/overview/global'))
+
 app.get('/:country', async (req, res, next) => {
   const { country } = req.params
-  var countries = (await api.getCountry({ sort: 'cases' })), 
-      data = country === 'global' ? (await api.getAll()) : (await api.getCountry({ country}))
+  let countries = (await api.countries(null, 'cases')), 
+      data = country.toLowerCase() === 'global' ? (await api.all()) : (await api.countries(country))
   res.render('index', { countries, data })
+})
+
+app.get('/overview/:country', async (req, res, next) => { 
+  const { country } = req.params
+  let countries = (await api.countries(null, 'cases')),
+      data = country.toLowerCase() === 'global' ? (await api.all()) : (await api.countries(country))
+  !data.country && (data.country = 'Global')
+  data["countries"] = countries
+  data["activeP"] = parseFloat((data.active / data.cases * 100)).toFixed(2)
+  data["recoveredP"] = parseFloat((data.recovered / data.cases * 100)).toFixed(2)
+  data["deathsP"] = (100 - data.activeP - data.recoveredP).toFixed(2)
+  data["infoHtml"] = 
+  `<table>
+    <tbody>
+      <tr>
+        <td>Active</td>
+        <td>${String(data.active).replace(/(.)(?=(\d{3})+$)/g,'$1,')}</td>
+      </tr>
+      <tr>
+        <td>Recovered</td>
+        <td>${String(data.recovered).replace(/(.)(?=(\d{3})+$)/g,'$1,')}</td>
+      </tr>
+      <tr>
+        <td>Deaths</td>
+        <td>${String(data.deaths).replace(/(.)(?=(\d{3})+$)/g,'$1,')}</td>
+      </tr>
+    </tbody>
+  </table>`
+  res.render('overview', data)
 })
 
 app.use((err, req, res, next) => {
