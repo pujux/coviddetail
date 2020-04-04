@@ -53,22 +53,25 @@ select, input {
 
 small {
   font-size: 60% !important;
+  --positive-color: red;
+  --negative-color: green;
 }
 
 .main > .row:first-of-type > div {
   height: 105px;
 }
 
+small.recovered {
+  --positive-color: green;
+  --negative-color: red;
+}
+
 small.positive {
-  color: red;
+  color: var(--positive-color);
 }
 
 small.negative {
-  color: green;
-}
-
-small.recovered {
-  filter: invert();
+  color: var(--negative-color);
 }
 
 .maw-90-p {
