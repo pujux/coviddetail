@@ -38,21 +38,16 @@ if(isProduction)
 
 app.get('/', (req, res, next) => res.redirect('/global'))
 
-app.get('/overview/', (req, res, next) => res.redirect('/overview/global'))
-
 app.get('/:country', async (req, res, next) => {
   const { country } = req.params
-  let countries = (await api.countries(null, 'cases')), 
-      data = country.toLowerCase() === 'global' ? (await api.all()) : (await api.countries(country))
-  if(country.toLowerCase() !== 'global'){
-    let yesterday = (await api.yesterday()).find(c => c.country === country)
-    data.todayRecovered = data.recovered - yesterday.recovered
-    data.todayActive = data.active - yesterday.active
-    data.todayCritical = data.critical - yesterday.critical
-    data.todayCasesPerOneMillion = data.casesPerOneMillion - yesterday.casesPerOneMillion
-    data.todayDeathsPerOneMillion = data.deathsPerOneMillion - yesterday.deathsPerOneMillion
-    console.log(data.todayCritical)
-  }
+  let countries = (await api.countries({sort:'cases'}))
+  let data = country.toLowerCase() === 'global' ? (await api.all()) : (await api.countries({country}))
+  let yesterday = country.toLowerCase() !== 'global' ? await api.yesterday.countries({country}) : await api.yesterday.all()
+  data.todayRecovered = data.recovered - yesterday.recovered
+  data.todayActive = data.active - yesterday.active
+  data.todayCritical = data.critical - yesterday.critical
+  data.todayCasesPerOneMillion = data.casesPerOneMillion - yesterday.casesPerOneMillion
+  data.todayDeathsPerOneMillion = data.deathsPerOneMillion - yesterday.deathsPerOneMillion
   res.render('index', { countries, data })
 })
 
