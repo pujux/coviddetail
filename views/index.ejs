@@ -23,8 +23,8 @@
   </script>
   <style>
     .bmc-button img{
-      height: 34px !important;
-      width: 35px !important;
+      height: 20px !important;
+      width: 20px !important;
       margin-bottom: 1px !important;
       box-shadow: none !important;
       border: none !important;
@@ -33,7 +33,7 @@
     .bmc-button{
       padding: 7px 10px 7px 10px !important;
       line-height: 35px !important;
-      height:51px !important;
+      height:35px !important;
       text-decoration: none !important;
       display:inline-flex !important;
       color:#000000 !important;
@@ -74,12 +74,13 @@
           </span>
           <div class="d-inline-block text-center w-100">
             <h5 class="mb-2 heading">Country</h5>
-            <select class="w-200" id="countrySelect" name="country">
-              <option value="global">Global</option>
+            <input class="w-200 rounded" id="countrySelect" list="countryList" name="country">
+            <datalist id="countryList">
+              <option>Global</option>
               <% for (var country of countries) { %>
-                <option value="<%= encodeURIComponent(country.country) %>"><%= country.country %></option>
+                <option><%= country.country %></option>
               <% } %>
-            </select>
+            </datalist>
           </div>
         </div>
       </div>
@@ -184,7 +185,11 @@
       </div>
       <div class="col-12 col-md-6 mt-2 mt-md-0 text-center d-flex flex-row justify-content-center">
         <p class="m-0 align-self-center">
-          <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/puf17640"><img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Donate"><span style="margin-left:15px;margin-right:5px;font-size:28px !important;">Buy me a coffee</span></a>
+          <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
+          <a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/puf17640">
+            <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Donate">
+            <span style="margin-left: 5px;margin-top: -6px;font-size: 20px !important;">Buy me a coffee</span>
+          </a>
         </p>
       </div>
     </div> 
@@ -218,11 +223,13 @@
     });
   </script>
   <script>
-    let updated = <%- data.updated %>
-    $("#lastUpdated").text(moment(updated).fromNow(true))
-    $("#countrySelect").val(window.location.pathname.replace(/\//g, '')).on('change', (e)=>{
-      window.location.replace(decodeURIComponent($(e.target).val()))
-    })
+    let updated = parseInt('<%- data.updated %>')
+    if(updated)
+      $("#lastUpdated").text(moment(updated).fromNow(true))
+    let current = decodeURIComponent(window.location.pathname.replace(/\//g, ''))
+    $("#countrySelect").val(current.charAt(0).toUpperCase()+current.slice(1))
+                 .on('change', (e) => $('#countryList option').filter((i, o)=> o.value.toLowerCase() === e.target.value.toLowerCase()).length && window.location.replace('/'+encodeURIComponent($(e.target).val())))
+                 .on('input', (e) => $('#countryList option').filter((i, o)=> o.value.toLowerCase() === e.target.value.toLowerCase()).length && window.location.replace('/'+encodeURIComponent($(e.target).val())))
     $("small").each((i, e) => {
       if(parseInt(e.textContent.replace(/(\(|\))/g, '')) > 0){
         $(e).addClass('positive')
