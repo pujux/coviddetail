@@ -106,7 +106,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6 mb-4 <% if (!(data.critical !== undefined) || !(data.casesPerOneMillion !== undefined)) { %>mb-md-0 <% } %>order-4 order-md-5">
+      <div class="col-12 col-md-6 mb-4 order-4 order-md-5">
         <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow d-flex flex-row">
           <span class="icon d-inline-block align-self-center">
             <img width="56" height="56" src="https://img.icons8.com/color/96/000000/coronavirus.png"/>
@@ -117,7 +117,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6 mb-4 <% if (!(data.critical !== undefined) || !(data.casesPerOneMillion !== undefined)) { %>mb-md-0 <% } %>order-4 order-md-5">
+      <div class="col-12 col-md-6 mb-4 order-4 order-md-5">
         <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow d-flex flex-row">
           <span class="icon d-inline-block align-self-center">
             <img width="56" height="56" src="https://img.icons8.com/color/96/000000/recovery.png"/>
@@ -128,33 +128,51 @@
           </div>
         </div>
       </div>
-      <% if(data.critical !== undefined) { %>
-        <div class="col-12 col-md-6 mb-4 mb-md-0 order-4 order-md-5">
-          <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow d-flex flex-row">
-            <span class="icon d-inline-block align-self-center">
-              <img width="56" height="56" src="https://img.icons8.com/color/96/000000/hospital-bed.png"/>
-            </span>
-            <div class="d-inline-block text-center w-100">
-              <h5 class="text-center heading">Critical Cases</h5>
-              <h3 class="text-center number"><%= String(data.critical).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <span><small><%= data.todayCritical !== undefined ? "("+(data.todayCritical >= 0 ? "+":"-")+String(Math.abs(data.todayCritical)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></span></h3>
-            </div>
+      <div class="col-12 col-md-6 mb-4 order-4 order-md-5">
+        <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow d-flex flex-row">
+          <span class="icon d-inline-block align-self-center">
+            <img width="56" height="56" src="https://img.icons8.com/color/96/000000/hospital-bed.png"/>
+          </span>
+          <div class="d-inline-block text-center w-100">
+            <h5 class="text-center heading">Critical Cases</h5>
+            <h3 class="text-center number"><%= String(data.critical).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <span><small><%= data.todayCritical !== undefined ? "("+(data.todayCritical >= 0 ? "+":"-")+String(Math.abs(data.todayCritical)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></span></h3>
           </div>
         </div>
-      <% } %>
-      <% if(data.casesPerOneMillion !== undefined) { %>
-        <div class="col-12 col-md-6 mb-4 mb-md-0 order-4 order-md-5">
-          <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow d-flex flex-row">
-            <span class="icon d-inline-block align-self-center">
-              <img width="56" height="56" src="https://img.icons8.com/color/96/000000/group.png"/>
-            </span>
-            <div class="d-inline-block text-center w-100">
-              <h5 class="text-center heading">Cases Per Million</h5>
-              <h3 class="text-center number"><%= String(data.casesPerOneMillion).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <span><small><%= data.todayCasesPerOneMillion !== undefined ? "("+(data.todayCasesPerOneMillion >= 0 ? "+":"-")+String(Math.abs(data.todayCasesPerOneMillion)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></span></h3>
-            </div>
+      </div>
+      <div class="col-12 col-md-6 mb-4 order-5 order-md-6">
+        <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow d-flex flex-row">
+          <span class="icon d-inline-block align-self-center">
+            <img width="56" height="56" src="https://img.icons8.com/color/96/000000/group.png"/>
+          </span>
+          <div class="d-inline-block text-center w-100">
+            <h5 class="text-center heading">Cases Per Million</h5>
+            <h3 class="text-center number"><%= String(data.casesPerOneMillion).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <span><small><%= data.todayCasesPerOneMillion !== undefined ? "("+(data.todayCasesPerOneMillion >= 0 ? "+":"-")+String(Math.abs(data.todayCasesPerOneMillion)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></span></h3>
           </div>
         </div>
-      <% } %>
-      <div class="col-12 col-md-6 mb-md-4 order-6 order-md-2">
+      </div>
+      <div class="col-12 col-md-6 mb-4 mb-md-0 order-6 order-md-7">
+        <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow d-flex flex-row">
+          <span class="icon d-inline-block align-self-center">
+            <img width="56" height="56" src="https://img.icons8.com/color/96/000000/group.png"/>
+          </span>
+          <div class="d-inline-block text-center w-100">
+            <h5 class="text-center heading">Deaths Per Million</h5>
+            <h3 class="text-center number"><%= String(data.deathsPerOneMillion).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <span><small><%= data.todayDeathsPerOneMillion !== undefined ? "("+(data.todayDeathsPerOneMillion >= 0 ? "+":"-")+String(Math.abs(data.todayDeathsPerOneMillion)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></span></h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 mb-4 mb-md-0 order-7 order-md-8">
+        <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow d-flex flex-row">
+          <span class="icon d-inline-block align-self-center">
+            <img width="56" height="56" src="https://img.icons8.com/color/96/000000/group.png"/>
+          </span>
+          <div class="d-inline-block text-center w-100">
+            <h5 class="text-center heading">Tests</h5>
+            <h3 class="text-center number"><%= String(data.tests).replace(/(.)(?=(\d{3})+$)/g,'$1,') %> <span><small class="recovered"><%= data.todayTests !== undefined ? "("+(data.todayTests >= 0 ? "+":"-")+String(Math.abs(data.todayTests)).replace(/(.)(?=(\d{3})+$)/g,'$1,')+")" : "" %></small></span></h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 mb-md-4 order-8 order-md-2">
         <div class="p-3 mx-3 mx-md-2 mx-lg-0 rounded shadow h-100 d-flex flex-row">
           <span class="icon d-inline-block align-self-center">
             <img width="56" height="56" src="https://img.icons8.com/color/96/000000/historical.png"/>

@@ -48,6 +48,7 @@ app.get('/:country', async (req, res, next) => {
   data.todayCritical = data.critical - yesterday.critical
   data.todayCasesPerOneMillion = data.casesPerOneMillion - yesterday.casesPerOneMillion
   data.todayDeathsPerOneMillion = data.deathsPerOneMillion - yesterday.deathsPerOneMillion
+  data.todayTests = data.tests - yesterday.tests
   res.render('index', { countries, data })
 })
 
