@@ -2,7 +2,6 @@ const express = require('express'),
   path = require('path'),
   dotenvconf = require('dotenv').config(),
   app = express(),
-  fs = require('fs'),
   api = require('covidapi')
 
 if(dotenvconf.error || !process.env.NODE_ENV || !process.env.HTTP_PORT){
@@ -23,14 +22,6 @@ app.use(require('express-session')({ name: 'coviddetail-session', secret: proces
 app.use(express.static(path.join(__dirname, '/public')))
 app.use(require('helmet')())
 
-if(isProduction)
-  app.use((req, res, next) => {
-    if(req.secure)
-      next()
-    else
-      res.redirect(`https://${req.hostname}${req.path}`)
-  })
-
 app.get('/', (req, res, next) => res.redirect('/global'))
 
 app.get('/:country', async (req, res, next) => {
@@ -48,7 +39,7 @@ app.get('/:country', async (req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
-  console.log(err)
+  console.log(new Date().toISOString(), err)
   res.locals.message = err.message
   res.locals.error = !isProduction ? err : {}
   res.status(err.status || 5e2).send({ error: err.message })
