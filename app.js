@@ -4,7 +4,7 @@ const express = require('express'),
   app = express(),
   api = require('covidapi')
 
-if(dotenvconf.error || !process.env.NODE_ENV || !process.env.HTTP_PORT){
+if(dotenvconf.error || !process.env.NODE_ENV || !process.env.HTTP_PORT || !process.env.SESSION_SECRET){
   console.error('invalid environment variables, please fix your .env file')
   process.exit(-1)
 }
