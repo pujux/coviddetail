@@ -92,13 +92,19 @@
           </span>
           <div class="d-inline-block text-center w-100">
             <h5 class="mb-2 heading">Country</h5>
-            <input class="w-200 rounded" id="countrySelect" list="countryList" name="country">
+            <!--<input class="w-200 rounded" id="countrySelect" list="countryList" name="country">
             <datalist id="countryList">
               <option>Global</option>
               <% for (var country of countries) { %>
                 <option><%= country.country %></option>
               <% } %>
-            </datalist>
+            </datalist>-->
+            <select class="w-200 rounded" id="countrySelect" name="country">
+              <option>Global</option>
+              <% for (var country of countries) { %>
+                <option><%= country.country %></option>
+              <% } %>
+            </select>
           </div>
         </div>
       </div>
@@ -264,8 +270,8 @@
       $("#lastUpdated").text(moment(updated).fromNow(true))
     let current = decodeURIComponent(window.location.pathname.replace(/\//g, ''))
     $("#countrySelect").val(current.charAt(0).toUpperCase()+current.slice(1))
-                 .on('change', (e) => $('#countryList option').filter((i, o)=> o.value.toLowerCase() === e.target.value.toLowerCase()).length && window.location.replace('/'+encodeURIComponent($(e.target).val())))
-                 .on('input', (e) => $('#countryList option').filter((i, o)=> o.value.toLowerCase() === e.target.value.toLowerCase()).length && window.location.replace('/'+encodeURIComponent($(e.target).val())))
+                 .on('change', (e) => $('#countrySelect option').filter((i, o)=> o.value.toLowerCase() === e.target.value.toLowerCase()).length && window.location.replace('/'+encodeURIComponent($(e.target).val())))
+                 .on('input', (e) => $('#countrySelect option').filter((i, o)=> o.value.toLowerCase() === e.target.value.toLowerCase()).length && window.location.replace('/'+encodeURIComponent($(e.target).val())))
     $("small").each((i, e) => {
       if(parseInt(e.textContent.replace(/(\(|\))/g, '')) > 0){
         $(e).addClass('positive')
