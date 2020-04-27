@@ -13,7 +13,6 @@ const isProduction = process.env.NODE_ENV === 'production'
 
 app.set('views', path.join(__dirname, '/views'))
 app.set('view engine', 'ejs')
-
 app.use(require('morgan')(':date[web] | :remote-addr - :method :url :status :response-time ms - :res[content-length]'))
 app.use(require('cookie-parser')())
 app.use(express.json())
